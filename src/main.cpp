@@ -1,5 +1,5 @@
 #include <Arduino.h>
-
+/*
 const int TRIG_PIN = 9;
 const int ECHO_PIN = 10;
 
@@ -35,4 +35,17 @@ void loop() {
 // put function definitions here:
 int myFunction(int x, int y) {
   return x + y;
+}
+  */
+const int GREEN_LED = 5;
+
+void setup() {
+  pinMode(GREEN_LED, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(GREEN_LED, HIGH);
+  delay(500);
+  digitalWrite(GREEN_LED, LOW);
+  delay(500);
 }
