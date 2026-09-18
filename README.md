@@ -1,6 +1,6 @@
 # Ultrasonic Parking Sensor
 
-A reverse-parking style distance sensor built with an Arduino-compatible board, an HC-SR04 ultrasonic sensor, and a three-color LED display — written in modern, object-free procedural C++ using the PlatformIO toolchain.
+A reverse-parking style distance sensor built with an Arduino-compatible board, an HC-SR04 ultrasonic sensor, and a three-color LED display, written in C++ using the PlatformIO toolchain.
 
 As an object gets closer to the sensor, the system switches between three status LEDs (green → yellow → red) to give an immediate, at-a-glance distance warning, the same way a car's reverse parking sensors work.
 
