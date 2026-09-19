@@ -10,7 +10,18 @@ As an object gets closer to the sensor, the system switches between three status
 - Three-zone visual alert system (safe / caution / danger)
 - Graceful handling of out-of-range / no-echo readings (treated as "clear," not garbage data)
 - Live distance readout over Serial for debugging and monitoring
+- Sensor logic encapsulated in its own C++ class (`UltrasonicSensor`) rather than loose global functions
 - Built and managed with PlatformIO — reproducible builds, dependency management, and clean project structure instead of the classic Arduino IDE sketch workflow
+
+## Project Structure
+
+```
+include/
+  UltrasonicSensor.h   # Sensor class: distance reading + timeout handling
+src/
+  main.cpp             # Setup, LED zone logic, main loop
+platformio.ini          # Board/toolchain configuration
+```
 
 ## Hardware Used
 
@@ -79,10 +90,10 @@ The resulting distance is then compared against two thresholds to decide which s
 
 ## Possible Improvements
 
-- Add a buzzer (driven through a transistor) for an audible alert that beeps faster as distance decreases, matching real parking sensor behavior
 - Replace blocking `delay()` calls with a `millis()`-based timer for non-blocking timing
-- Refactor into small C++ classes (`UltrasonicSensor`, `AlertSystem`) for cleaner separation of concerns
+- Extract the LED zone logic into its own `AlertSystem` class, alongside `UltrasonicSensor`
 - Add a rolling average / median filter across multiple readings to further smooth out sensor noise
 
 ## License
+
 MIT
