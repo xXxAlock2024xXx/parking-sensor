@@ -1,44 +1,25 @@
+#include "UltrasonicSensor.h"
 #include <Arduino.h>
 
-const int TRIG_PIN = 9;
-const int ECHO_PIN = 10;
 
 const int RED_LED = 5;
 const int YELLOW_LED = 6;
 const int GREEN_LED = 7;
 
-long readDistance() {
-  // Send a pulse to trigger the ultrasonic sensor
-  digitalWrite(TRIG_PIN, LOW);
-  delayMicroseconds(2);
-  digitalWrite(TRIG_PIN, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(TRIG_PIN, LOW);
-
-  // Measure the duration of the pulse
-  long duration = pulseIn(ECHO_PIN, HIGH, 30000);
-
-  if (duration == 0) {
-    return -1; // Indicate an error or out of range
-  }
-
-  // Calculate the distance in centimeters
-  long distance = duration * 0.034 / 2;
-
-  return distance;
-}
+UltrasonicSensor sensor(9,10); //Trig , Echo
 
 void setup() {
   Serial.begin(9600);
-  pinMode(TRIG_PIN, OUTPUT);
-  pinMode(ECHO_PIN, INPUT);
+  sensor.begin();
+
   pinMode(RED_LED, OUTPUT);
   pinMode(YELLOW_LED, OUTPUT);
   pinMode(GREEN_LED, OUTPUT);
 }
 
+
 void loop() {
-  long distance = readDistance();
+  long distance = sensor.readDistanceCm();
 
   Serial.print("Distance: ");
   if (distance == -1) {
